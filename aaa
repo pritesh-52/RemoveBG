@@ -1,0 +1,35 @@
+[Unit]
+Description=gunicorn daemon
+Requires=gunicorn.socket
+After=network.target
+
+[Service]
+User=sammy
+Group=www-data
+WorkingDirectory=/home/ubuntu/rembg/Django-rembg
+ExecStart=/home/ubuntu/rembg/Django-rembg/bin/gunicorn \
+          --access-logfile - \
+          --workers 3 \
+          --bind unix:/run/gunicorn.sock \
+          remove_bg.wsgi:application
+
+[Install]
+WantedBy=multi-user.target
+
+
+
+
+server {
+    listen 80;
+    server_name 54.242.153.114;
+
+    location = /favicon.ico { access_log off; log_not_found off; }
+    location /static/ {
+        root /home/ubuntu/rembg/Django-rembg;
+    }
+
+    location / {
+        include proxy_params;
+        proxy_pass http://unix:/run/gunicorn.sock;
+    }
+}
