@@ -25,7 +25,7 @@ SECRET_KEY = 'changeme_changeme_changeme_changeme_changeme_changeme_changeme'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['143.198.124.204']
 
 
 # Application definition
@@ -134,4 +134,4 @@ STATICFILES_DIRS = [
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-DATA_UPLOAD_MAX_MEMORY_SIZE = 5242880 # 5 MB
+
